@@ -1,8 +1,6 @@
 #!/usr/bin/php -q
 <?php
-include('PHPMailer/class.phpmailer.php');
-include('PHPMailer/class.smtp.php');
-include('PHPMailer/language/phpmailer.lang-zh.php');
+require('PHPMailer/PHPMailerAutoload.php');
 
 define('ON_SECOND', true); // 準時寄出(false)、準時收到(true)
 
@@ -24,8 +22,8 @@ if (!is_object($mail) || !$mail) {
 $mail->IsSMTP();
 
 // $mail->SMTPDebug = 1;
-$mail->Port       = 465; // 465 or 578
-$mail->SMTPSecure = 'ssl'; // ssl or tls
+$mail->Port       = 587; // 465 or 578
+$mail->SMTPSecure = 'tls'; // ssl or tls
 $mail->Host       = 'smtp.gmail.com'; // ssl://smtp.gmail.com
 $mail->Encoding   = 'base64';
 $mail->CharSet    = 'utf-8';
@@ -34,8 +32,7 @@ $mail->Username   = SMTP_USERNAME;
 $mail->Password   = SMTP_PASSWORD;
 $mail->WordWrap   = 70;
 
-$mail->From     = FROM_MAIL;
-$mail->FromName = FROM_NAME;
+$mail->setFrom(FROM_MAIL, FROM_NAME);
 
 $mail->AddAddress(TO_MAIL, TO_NAME);
 // $mail->AddAddress(TO_MAIL2, TO_NAME2); // add more email
