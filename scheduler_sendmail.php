@@ -1,6 +1,10 @@
 #!/usr/bin/php -q
 <?php
-require('PHPMailer/PHPMailerAutoload.php');
+require('PHPMailer/src/PHPMailer.php');
+require('PHPMailer/src/SMTP.php');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 define('ON_SECOND', true); // 準時寄出(false)、準時收到(true)
 
